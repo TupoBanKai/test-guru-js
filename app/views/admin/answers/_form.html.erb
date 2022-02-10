@@ -1,0 +1,16 @@
+<%= form_with model: [:admin, @answers], local: true do | form | %>
+  <%= render 'shared/errors', resource: @answers%>
+
+  <p>
+     <b> boolean </b> <br>
+    <%= form.radio_button :correct, 'true' %> true <br />
+    <%= form.radio_button :correct, 'false' %> false <br />
+  </p>
+
+  <p>
+    <%= form.label :flag %><br>
+    <%= form.number_field :level, id: :test_level %>
+  </p>
+
+  <p> <%= form.submit %> </p>
+<% end %>

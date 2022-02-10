@@ -1,0 +1,18 @@
+<% arr = @test_passage.all_questions.order(id: :asc) %>
+<%= arr.index{ |x| x[:id] == @test_passage.current_question.id} + 1 %>/<%= @test_passage.all_questions.count %>
+<p>
+  <b><%= @test_passage.current_question.body %></b>
+</p>
+
+<%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
+  <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :flag, include_hidden: false do |b| %>
+  <p>
+    <%= b.check_box id: "answer_ids_#{b.object.id}" %>
+    <%= b.label %>
+  </p>
+  <% end %>
+  <%#= form_with url: gist_test_passage_path(@test_passae), local: true, method: :post do |form| %>
+    <%#= form. %>
+  <p><%= link_to 'Gist Question', gist_test_passage_path(@test_passage), method: :post %></p>
+  <p><%= form.submit 'Next' %></p>
+<% end %>

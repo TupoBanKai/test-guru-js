@@ -1,0 +1,26 @@
+<h1>Questions</h1>
+
+<p>
+  <%= link_to 'New question', new_test_question_path %>
+</p>
+
+<table>
+    <tr>
+      <th>Tests id</th>
+      <th>Questions</th>
+      <th cosplain="3">Actions</th>
+    </tr>
+  <% @collection.each do |question| %>
+    <tr>
+      <td><%=@test.id%></td>
+      <td><%= question.body %></td>
+      <td><%= link_to 'Show', question_path(question) %></td>
+      <td><%= link_to 'Edit', edit_question_path(question) %></td>
+      <td>
+        <%= link_to 'Delete',
+        question_path(question),
+        method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

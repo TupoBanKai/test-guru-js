@@ -1,0 +1,11 @@
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <strong class="me-auto">Bootstrap</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="close"></button>
+  </div>
+  <div class="toast-body">
+    <% flash.each do | key, message | %>
+    <% content_tag :p, message, class: "flash #{key}" %>
+    <% end %>
+  </div>
+</div>

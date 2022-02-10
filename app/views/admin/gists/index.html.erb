@@ -1,0 +1,15 @@
+<table>
+    <tr>
+      <th>Gists</th>
+      <th>Question body</th>
+      <th>User's email</th>
+    </tr>
+  <% @gists.each do |gist| %>
+    <tr>
+      <td><%=link_to ("#{gist.gist_remote_id}"), gist.html_url %></td>
+      <td><%=link_to ("#{gist.character_limit}"), admin_gists_path(gist.question) %></td>
+
+      <td><%= gist.user.email %></td>
+  <% end %>
+    </tr>
+</table>

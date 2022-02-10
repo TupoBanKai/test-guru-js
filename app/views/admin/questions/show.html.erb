@@ -1,0 +1,5 @@
+<%= @question.body %>
+<% @question.answers.each do |answer| %>
+  <%= answer.flag %>
+  <%= answer.correct %>
+<% end %>
