@@ -1,0 +1,28 @@
+<h1><%= t('.header') %></h1>
+
+<table class="table">
+    <tr>
+      <th class="sort-by-title pointer">
+        Tests
+        <%= octicon 'arrow-up', class: 'text-success hide' %>
+        <%= octicon 'arrow-down', class: 'text-success hide' %>
+      </th>
+      <th>Questions count</th>
+    </tr>
+  <% @tests.each do |test| %>
+    <tr>
+        <td><%= test.title %></td>
+        <td><%= test.questions.count %></td>
+
+        <td><%=link_to I18n.t('button_show'), admin_test_questions_path(test, test.questions) %></td>
+      <td><%=link_to I18n.t('button_edit'), edit_admin_test_path(test) %></td>
+      <td><%=link_to I18n.t('button_delete'),
+        tests_path(test),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+
+      </td>
+      <td><%=button_to I18n.t('button_start'), start_test_path(test) %></td>
+  <% end %>
+    </tr>
+</table>

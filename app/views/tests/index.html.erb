@@ -1,0 +1,24 @@
+ <div class = "row justify-cotent-center">
+  <div class = "col col-md-4">
+    <h1><%= t('tests.index.header') %></h1>
+
+    <table>
+      <tr>
+        <th class="sort-by-title pointer">
+        <%= t('tests_list') %>
+        <%= octicon 'arrow-up', class: 'text-success hide' %>
+        <%= octicon 'arrow-down', class: 'text-success hide' %>
+        </th>
+        <th><%= t('questions_count') %></th>
+      </tr>
+
+    <% @tests.each do |test| %>
+      <tr>
+          <td><%= test.title %></td>
+          <td><%= test.questions.count %></td>
+        <td><%=button_to t('.header'), start_test_path(test) %></td>
+    <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
