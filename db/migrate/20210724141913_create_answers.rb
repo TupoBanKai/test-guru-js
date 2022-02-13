@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateAnswers < ActiveRecord::Migration[6.0]
+class CreateAnswers < ActiveRecord::Migration[5.2]
   def change
     create_table :answers do |t|
       t.boolean :correct, default: true, null: false
