@@ -1,7 +1,7 @@
-class Admin::AnswersController < ApplicationController
+class Admin::AnswersController < Admin::BaseController
   before_action :find_test, only: [:index, :create, :new, :edit]
-  before_action :find_question, only: [:index, :show, :destroy, :edit]
-  before_action :find_answer, only: [:show, :edit, :destroy]
+  before_action :find_question, only: [:index, :show, :destroy, :edit, :new, :create]
+  before_action :find_answer, only: [:show, :edit, :destroy, :update]
 
   def index
     @collection = @question.answers
@@ -13,12 +13,20 @@ class Admin::AnswersController < ApplicationController
   def edit
   end
 
+  def update
+    if @answer.update(answer_params)
+      redirect_to admin_test_question_answers_path
+    else
+      render :edit
+    end
+  end
+
   def new
-    @answers = Aswer.new
+    @answer = @question.answers.new
   end
 
   def create
-    @answers = @questions.answers.new(answers_params)
+    @answers = @question.answers.new(answer_params)
 
     if @answers.save
       redirect_to admin_test_question_answers_path
@@ -33,6 +41,10 @@ class Admin::AnswersController < ApplicationController
   end
 
   private
+
+   def answer_params
+    params.require(:answer).permit(:correct, :flag)
+  end
 
   def find_answer
     @answer = Answer.find(params[:id])

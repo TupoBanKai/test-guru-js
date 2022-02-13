@@ -1,6 +1,6 @@
-class Admin::QuestionsController < ApplicationController
+class Admin::QuestionsController < Admin::BaseController
   before_action :find_test, only: [:index, :create, :new, :edit]
-  before_action :find_question, only: [:show, :destroy, :edit]
+  before_action :find_question, only: [:show, :destroy, :edit, :update]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
@@ -14,15 +14,23 @@ class Admin::QuestionsController < ApplicationController
   def edit
   end
 
+  def update
+    if @question.update(question_params)
+      redirect_to admin_test_questions_path
+    else
+      render :edit
+    end
+  end
+
   def new
     @question = Question.new
   end
 
   def create
-    @question = @test.questions.new(question_params)
+    new_question = @test.questions.new(question_params)
 
-    if @question.save
-      redirect_to admin_question_path(@question)
+    if new_question.save
+      redirect_to admin_test_questions_path(@test)
     else
       render :new
     end
@@ -30,7 +38,7 @@ class Admin::QuestionsController < ApplicationController
 
   def destroy
     @question.delete
-    redirect_to questions_path
+    redirect_to admin_test_questions_path
   end
 
   private
