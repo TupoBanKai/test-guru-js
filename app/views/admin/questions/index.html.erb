@@ -1,6 +1,10 @@
 <h1>Question</h1>
 
-<table>
+<%= render 'shared/errors', resource: @question %>
+
+<p><%= link_to 'Create question', new_admin_test_question_path %></p>
+
+<table class="table">
     <tr>
       <th>Questions</th>
       <th>Answers count</th>
