@@ -55,6 +55,8 @@ ru:
         success: "Тест создан"
       index:
         header: "Доступные тесты"
+      form_inline:
+        submit: "Ок"
 
   tests_mailer:
     completed_test:

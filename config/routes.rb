@@ -21,12 +21,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :gists, only: :index
     resources :tests do
+      patch :update_inline, on: :member
       resources :questions do
         resources :answers
       end
     end
+
+    resources :gists, only: :index
   end
 
 end
