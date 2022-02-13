@@ -1,4 +1,4 @@
-class AddUniqueIndexToTitleTest < ActiveRecord::Migration[6.0]
+class AddUniqueIndexToTitleTest < ActiveRecord::Migration[5.2]
   def up
     add_index :tests, [:title, :level], unique: true
   end

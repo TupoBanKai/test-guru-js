@@ -1,4 +1,4 @@
-class AddNameAndTypeAttributesToUsers < ActiveRecord::Migration[6.0]
+class AddNameAndTypeAttributesToUsers < ActiveRecord::Migration[5.2]
   def change
     add_column :users, :type, :string, null: false, default: 'User'
     add_column :users, :first_name, :string
