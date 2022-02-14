@@ -1,7 +1,7 @@
 class Admin::TestsController < Admin::BaseController
 
   before_action :set_tests, only: [:index, :update_inline]
-  before_action :find_test, only: [:show, :start, :desrtoy, :update, :edit, :update_inline]
+  before_action :find_test, only: [:show, :start, :update, :edit, :update_inline]
 
   def index
     @tests = Test.all
@@ -40,7 +40,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def destroy
-    @test.destroy
+    find_test.destroy # @test почему то nil
     redirect_to admin_tests_path
   end
 
