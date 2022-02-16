@@ -14,7 +14,7 @@ class Test < ApplicationRecord
     joins(:category).where('categories.title  = ?', category_name)
    }
 
-  validates :title, :level, presence: true
+  validates :title, :level, :category, presence: true
   validates :level, numericality: { greater_than: 0 }
   validates :title, uniqueness: { scope: :level }
 
