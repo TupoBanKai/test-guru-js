@@ -9,6 +9,8 @@ ru:
   select_category: "Выберете категорию"
   create_feedback: "Обратная связь"
 
+  create_feedback: "Оставить отзыв"
+
   welcome: "Добро пожаловать,"
 
   nav:

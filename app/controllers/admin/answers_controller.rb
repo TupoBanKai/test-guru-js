@@ -26,9 +26,9 @@ class Admin::AnswersController < Admin::BaseController
   end
 
   def create
-    @answers = @question.answers.new(answer_params)
+    @answer = @question.answers.new(answer_params)
 
-    if @answers.save
+    if @answer.save
       redirect_to admin_test_question_answers_path
     else
       render :new
