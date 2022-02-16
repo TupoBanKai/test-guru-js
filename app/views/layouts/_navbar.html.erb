@@ -7,6 +7,7 @@
           Welcome, <b><%= current_user.email %></b> guru |
           <%= link_to I18n.t('button_logout'), user_session_path, method: :delete %>
         </p>
+        <p><%= link_to I18n.t('create_feedback'), new_feedback_path %></p>
       <% else %>
       <%= link_to "Login", new_session_path(resource_name) %>
       <%= link_to "Sign up", new_registration_path(resource_name) %>
