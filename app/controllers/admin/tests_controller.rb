@@ -35,12 +35,16 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def create
-    current_user.created_tests.create(test_params)
-    redirect_to admin_tests_path, notice: t('.success')
+    @test = current_user.created_tests.create(test_params)
+    if @test.save
+      redirect_to admin_tests_path, notice: t('.success')
+    else
+      render :new
+    end
   end
 
   def destroy
-    find_test.destroy # @test почему то nil
+    find_test.destroy
     redirect_to admin_tests_path
   end
 
