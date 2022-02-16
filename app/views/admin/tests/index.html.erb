@@ -2,6 +2,8 @@
 
 <%= render 'shared/errors', resource: @test %>
 
+<p><%= link_to 'Create test', new_admin_test_path %></p>
+
 <table class="table">
     <tr>
       <th class="sort-by-title pointer">
@@ -14,22 +16,21 @@
     </tr>
   <% @tests.each do |test| %>
     <tr>
-        <td>
-          <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
-          <%= render 'form_inline', test: test == @test ? @test : test %>
-        </td>
-        <td><%= test.questions.count %></td>
-
-        <td><%=link_to I18n.t('button_show'), admin_test_questions_path(test, test.questions) %></td>
       <td>
-        <%=link_to I18n.t('button_edit'),
-                    edit_admin_test_path(test),
-                    data: { test_id: test.id },
-                    class: 'form-inline-link' %>
+        <%= content_tag :span, test.title, class: 'test-title', data: { test_id: test.id } %>
+        <%= render 'form_inline', test: test == @test ? @test : test %>
+      </td>
+      <td><%= test.questions.count %></td>
+
+      <td><%=link_to I18n.t('button_show'), admin_test_questions_path(test, test.questions) %></td>
+      <td>
+        <%=link_to I18n.t('button_edit'), edit_admin_test_path(test),
+                                          data: { test_id: test.id },
+                                          class: 'form-inline-link' %>
       </td>
       <td>
         <%=link_to I18n.t('button_delete'),
-        tests_path(test),
+        admin_test_path(test),
         method: :delete,
         data: { confirm: 'Are you sure?' } %>
       </td>
