@@ -16,11 +16,6 @@
 
         <td><%=link_to 'Show', admin_test_question_answers_path(@test, question) %></td>
       <td><%=link_to 'Edit', edit_admin_test_question_path(@test, question) %></td>
-      <td><%=link_to 'Delete',
-        admin_test_question_path(@test, question),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %>
-      </td>
   <% end %>
     </tr>
 </table>

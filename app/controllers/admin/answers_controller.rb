@@ -1,7 +1,7 @@
 class Admin::AnswersController < Admin::BaseController
   before_action :find_test, only: [:index, :create, :new, :edit]
-  before_action :find_question, only: [:index, :show, :destroy, :edit, :new, :create]
-  before_action :find_answer, only: [:show, :edit, :destroy, :update]
+  before_action :find_question, only: [:index, :show, :edit, :new, :create]
+  before_action :find_answer, only: [:show, :edit, :update]
 
   def index
     @collection = @question.answers
@@ -35,15 +35,10 @@ class Admin::AnswersController < Admin::BaseController
     end
   end
 
-  def destroy
-    @answer.destroy
-    redirect_to admin_test_question_answers_path
-  end
-
   private
 
    def answer_params
-    params.require(:answer).permit(:correct, :flag)
+    params.require(:answer).permit(:correct, :flag, find_test.id, find_question.id)
   end
 
   def find_answer
