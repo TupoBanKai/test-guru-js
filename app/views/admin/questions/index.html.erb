@@ -1,6 +1,10 @@
 <h1>Question</h1>
 
-<table>
+<%= render 'shared/errors', resource: @question %>
+
+<p><%= link_to 'Create question', new_admin_test_question_path %></p>
+
+<table class="table">
     <tr>
       <th>Questions</th>
       <th>Answers count</th>
@@ -8,6 +12,7 @@
   <% @test.questions.each do |question| %>
     <tr>
         <td><%= question.body %></td>
+        <td><%= question.answers.count %></td>
 
         <td><%=link_to 'Show', admin_test_question_answers_path(@test, question) %></td>
       <td><%=link_to 'Edit', edit_admin_test_question_path(@test, question) %></td>
