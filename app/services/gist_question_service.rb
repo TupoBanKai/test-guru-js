@@ -7,20 +7,7 @@ class GistQuestionService
   end
 
   def call
-    gist = @client.create_gist(gist_params)
-  end
-
-  private
-
-  def gist_params
-    {
-      description: "Desc from TestGuru",
-      files: {
-        'test-guru-question1.txt' => {
-          content: 'gist_content'
-        }
-      }
-    }
+    @client.create_gist(gist_params)
   end
 
   def success?
@@ -28,9 +15,23 @@ class GistQuestionService
     status == 200 || status == 201
   end
 
+  private
+
+  def gist_params
+    {
+      description: "Desc from TestGuru",
+      public: true,
+      files: {
+        "question: {@question.body}" => {
+          content: gist_content
+        }
+      }
+    }
+  end
+
   def gist_content
     content = [@question.body]
-    content += @question.answers.pluck(:body)
+    content += @question.answers.pluck(:flag)
     content.join("\n")
   end
 

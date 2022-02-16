@@ -32,7 +32,9 @@ gem 'devise', '~> 4.0'
 #NETWORKING
 #gem 'faraday'
 gem 'octokit', '~> 4.0'
-gem 'dotenv-rails'
+group :development, :test do
+  gem 'dotenv-rails'
+end
 
 
 # Use ActiveStorage variant
