@@ -1,6 +1,10 @@
 <h1>Answers</h1>
 
-<table>
+<%= render 'shared/errors', resource: @answer %>
+
+<p><%= link_to 'Create answer', new_admin_test_question_answer_path %></p>
+
+<table class="table">
     <tr>
       <th>Answers</th>
     </tr>
@@ -10,12 +14,7 @@
         <td><%= answer.correct %></td>
 
         <td><%=link_to 'Show', admin_test_question_answer_path(@test, @question, answer) %></td>
-      <td><%=link_to 'Edit', edit_admin_test_question_path(@test, @question, answer) %></td>
-      <td><%=link_to 'Delete',
-        admin_test_question_path(@test, @question, answer),
-        method: :delete,
-        data: { confirm: 'Are you sure?' } %>
-      </td>
+      <td><%=link_to 'Edit', edit_admin_test_question_answer_path(@test, @question, answer) %></td>
   <% end %>
     </tr>
 </table>

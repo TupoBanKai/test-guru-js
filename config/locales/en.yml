@@ -7,6 +7,9 @@ en:
   button_logout: "Logout"
 
   select_category: "Select category"
+  create_feedback: "Feedback"
+
+  create_feedback: "Create Feedback"
 
   welcome: "Welcome,"
 
@@ -25,7 +28,7 @@ en:
         category_id: "Category"
     collection_select:
       test:
-        category_id: "Ruby" #Вообще не понял как сделать 4е задание
+        category_id: "Ruby"
 
   shared:
     errors:

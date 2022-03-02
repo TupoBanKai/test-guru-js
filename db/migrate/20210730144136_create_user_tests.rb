@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateUserTests < ActiveRecord::Migration[6.0]
+class CreateUserTests < ActiveRecord::Migration[5.2]
   def change
     create_table :user_tests do |t|
       t.references :user, null: false, foreign_key: true
