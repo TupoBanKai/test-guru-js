@@ -11,6 +11,7 @@ class TestsController < ApplicationController
       current_user.tests.push(@test)
       redirect_to current_user.test_passage(@test)
     else
+      flash[:notice] = "Not enough questions"
       redirect_to tests_path
     end
   end
