@@ -16,5 +16,11 @@
     <%= form.collection_select :category_id, Category.all, :id, :title, { :include_blank => I18n.t('select_category') }%>
   </p>
 
+  <p>
+     <b> publish </b> <br>
+    <%= form.radio_button :status, 'true' %> true <br />
+    <%= form.radio_button :status, 'false' %> false <br />
+  </p>
+
   <p> <%= form.submit %> </p>
 <% end %>

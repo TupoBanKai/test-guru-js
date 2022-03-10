@@ -6,10 +6,4 @@ class TestsMailer < ApplicationMailer
 
     mail to: @user.email
   end
-
-  def created_feedback(feedback)
-    @feedback = feedback
-
-    mail to: User.find_by(type: "Admin").email
-  end
 end

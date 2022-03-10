@@ -3,7 +3,7 @@ class TestsController < ApplicationController
   before_action :find_test, only: [:start]
 
   def index
-    @tests = Test.all
+    @tests = Test.where(status: true)
   end
 
   def start

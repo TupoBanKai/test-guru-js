@@ -1,7 +1,7 @@
 class Admin::TestsController < Admin::BaseController
 
   before_action :set_tests, only: [:index, :update_inline]
-  before_action :find_test, only: [:show, :start, :update, :edit, :update_inline]
+  before_action :find_test, only: [:show, :destroy, :start, :update, :edit, :update_inline]
 
   def index
     @tests = Test.all
@@ -44,7 +44,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def destroy
-    find_test.destroy
+    @test.destroy
     redirect_to admin_tests_path
   end
 
@@ -55,7 +55,7 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id)
+    params.require(:test).permit(:title, :level, :category_id, :status)
   end
 
   def find_test

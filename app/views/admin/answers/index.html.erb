@@ -10,11 +10,16 @@
     </tr>
   <% @question.answers.each do |answer| %>
     <tr>
-        <td><%= answer.flag %></td>
+        <td><%= answer.body %></td>
         <td><%= answer.correct %></td>
 
         <td><%=link_to 'Show', admin_test_question_answer_path(@test, @question, answer) %></td>
-      <td><%=link_to 'Edit', edit_admin_test_question_answer_path(@test, @question, answer) %></td>
+        <td><%=link_to 'Edit', edit_admin_test_question_answer_path(@test, @question, answer) %></td>
+        <td>
+          <%= link_to 'Delete',
+          admin_test_question_answer_path(@test, @question, answer),
+          method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
   <% end %>
     </tr>
 </table>

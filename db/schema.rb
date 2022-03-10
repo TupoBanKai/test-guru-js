@@ -9,13 +9,15 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2022_02_14_140245) do
+
+ActiveRecord::Schema.define(version: 2022_03_10_174642) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.boolean "correct", default: true, null: false
-    t.string "flag", null: false
+    t.string "body", null: false
     t.bigint "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,14 +28,6 @@ ActiveRecord::Schema.define(version: 2022_02_14_140245) do
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.string "body", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -81,6 +75,7 @@ ActiveRecord::Schema.define(version: 2022_02_14_140245) do
     t.integer "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status", default: false, null: false
     t.index ["category_id"], name: "index_tests_on_category_id"
     t.index ["creator_id"], name: "index_tests_on_creator_id"
     t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
@@ -112,4 +107,12 @@ ActiveRecord::Schema.define(version: 2022_02_14_140245) do
     t.index ["type"], name: "index_users_on_type"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "gists", "questions"
+  add_foreign_key "gists", "users"
+  add_foreign_key "questions", "tests"
+  add_foreign_key "test_passages", "questions", column: "current_question_id"
+  add_foreign_key "test_passages", "tests"
+  add_foreign_key "test_passages", "users"
+  add_foreign_key "tests", "categories"
 end
