@@ -1,5 +1,5 @@
-<%= form_with model: [:admin, @answers], local: true do | form | %>
-  <%= render 'shared/errors', resource: @answers%>
+<%= form_with model: [:admin, @test, @question, @answer], local: true do | form | %>
+  <%= render 'shared/errors', resource: @answer %>
 
   <p>
      <b> boolean </b> <br>
@@ -8,8 +8,8 @@
   </p>
 
   <p>
-    <%= form.label :flag %><br>
-    <%= form.number_field :level, id: :test_level %>
+    <%= form.label :body %><br>
+    <%= form.text_field :body, id: :anwer_body %>
   </p>
 
   <p> <%= form.submit %> </p>

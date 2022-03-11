@@ -1,8 +1,7 @@
  <div class = "row justify-cotent-center">
   <div class = "col col-md-4">
     <h1><%= t('tests.index.header') %></h1>
-
-    <table>
+    <table class="table">
       <tr>
         <th class="sort-by-title pointer">
         <%= t('tests_list') %>
@@ -16,7 +15,7 @@
       <tr>
           <td><%= test.title %></td>
           <td><%= test.questions.count %></td>
-        <td><%=button_to t('.header'), start_test_path(test) %></td>
+        <td><%=button_to I18n.t('button_start'), start_test_path(test) %></td>
     <% end %>
       </tr>
     </table>
