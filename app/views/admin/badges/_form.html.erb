@@ -1,0 +1,19 @@
+<%= form_with model: [:admin, @badge], local: true do | form | %>
+  <%= render 'shared/errors', resource: @badge %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, id: :badge_title %>
+  </p>
+
+  <p>
+    <%= form.label :pic_name %><br>
+    <%= form.text_field :pic_name, id: :badge_pic_name %>
+  </p>
+
+  <p>
+    <%= form.select :sym_term, Badge::TERMS, { :include_blank => "select term" }%>
+  </p>
+
+  <p> <%= form.submit %> </p>
+<% end %>

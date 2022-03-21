@@ -12,6 +12,10 @@ class TestPassagesController < ApplicationController
     if @test_passage.completed?
       @test_passage.accept!(params[:answer_ids])
       TestsMailer.completed_test(@test_passage).deliver_now
+      metada = Badge.metad(@test_passage.count_true_answers)
+      for i in find_badges(metada)
+        current_user.badges.push(i)
+      end
       redirect_to result_test_passage_path(@test_passage)
     else
       @test_passage.accept!(params[:answer_ids])
@@ -36,5 +40,9 @@ class TestPassagesController < ApplicationController
 
   def find_test_passage
     @test_passage = TestPassage.find(params[:id])
+  end
+
+  def find_badges(sym)
+    @badges = Badge.where(sym_term: sym)
   end
 end

@@ -1,0 +1,22 @@
+<table class = "table">
+  <tr>
+    <th> Badges </th>
+    <p><%= link_to 'Create badge', new_admin_badge_path %></p>
+  </tr>
+  <tr>
+    <% @badges.each  do |badge| %>
+  </tr>
+    <td> <%= badge.title %> </td>
+    <td> <%= badge.pic_name %> </td>
+    <td> <%= badge.sym_term %> </td>
+    <td> <%= link_to I18n.t('button_show'), edit_admin_badge_path(badge) %> </td>
+    <td> <%= link_to I18n.t('button_edit'), edit_admin_badge_path(badge) %> </td>
+    <td>
+      <%=link_to I18n.t('button_delete'),
+      admin_badge_path(badge),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+    </td>
+    <% end %>
+
+</table>

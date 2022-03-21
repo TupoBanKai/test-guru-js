@@ -1,0 +1,27 @@
+<table class = "table">
+  <tr>
+    <th> All badges </th>
+  </tr>
+  <tr>
+    <% @badges.each  do |badge| %>
+  </tr>
+    <td> <%= badge.title %> </td>
+    <td> <%= badge.pic_name %> </td>
+    <% end %>
+</table>
+
+<table class = "table">
+  <tr>
+    <th> Yours badges </th>
+  </tr>
+  <tr>
+    <% @user_badges.each  do |user_badge| %>
+  </tr>
+      <% @badges.each do |badge| %>
+        <% if badge.id == user_badge.badge_id %>
+          <td> <%= badge.title %> </td>
+          <td> <%= badge.pic_name %> </td>
+        <% end %>
+      <% end %>
+    <% end %>
+</table>
