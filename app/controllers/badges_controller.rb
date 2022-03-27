@@ -11,9 +11,6 @@ class BadgesController < ApplicationController
 
   private
 
-  def find_badge
-  end
-
   def badge_params
     params.require(:badge).permit(:title, :pic_name)
   end

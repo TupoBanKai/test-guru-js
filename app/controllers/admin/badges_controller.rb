@@ -1,6 +1,5 @@
 class Admin::BadgesController < Admin::BaseController
   before_action :find_badge, only: [:show, :edit, :update, :destroy]
-  before_action :find_user_badges, only: [:index]
 
   def index
     @badges = Badge.all
@@ -46,11 +45,7 @@ class Admin::BadgesController < Admin::BaseController
   end
 
   def badge_params
-    params.require(:badge).permit(:title, :pic_name, :sym_term)
-  end
-
-  def find_user_badges
-    @user_badges = UserBadge.where(user_id: current_user.id)
+    params.require(:badge).permit(:title, :pic_name, :sym_term, :value)
   end
 
 end

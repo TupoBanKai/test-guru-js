@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_03_13_155815) do
     t.string "title", null: false
     t.string "pic_name", null: false
     t.string "sym_term", null: false
+    t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,14 +42,6 @@ ActiveRecord::Schema.define(version: 2022_03_13_155815) do
   create_table "feedbacks", force: :cascade do |t|
     t.string "body", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_feedbacks_on_user_id"
-  end
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.string "body", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_feedbacks_on_user_id"
@@ -98,8 +91,8 @@ ActiveRecord::Schema.define(version: 2022_03_13_155815) do
   end
 
   create_table "user_badges", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "badge_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["badge_id"], name: "index_user_badges_on_badge_id"
@@ -132,8 +125,6 @@ ActiveRecord::Schema.define(version: 2022_03_13_155815) do
     t.index ["type"], name: "index_users_on_type"
   end
 
-<<<<<<< Updated upstream
-=======
   add_foreign_key "answers", "questions"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
@@ -144,5 +135,4 @@ ActiveRecord::Schema.define(version: 2022_03_13_155815) do
   add_foreign_key "tests", "categories"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "users"
->>>>>>> Stashed changes
 end

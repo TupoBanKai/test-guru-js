@@ -12,7 +12,12 @@
   </p>
 
   <p>
-    <%= form.select :sym_term, Badge::TERMS, { :include_blank => "select term" }%>
+    <%= form.select :sym_term, BadgeService::TERMS, { :include_blank => "select term" }%>
+  </p>
+
+  <p>
+    <%= form.label :value %><br>
+    <%= form.text_field :value, id: :badge_value %>
   </p>
 
   <p> <%= form.submit %> </p>

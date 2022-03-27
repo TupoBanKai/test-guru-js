@@ -15,13 +15,9 @@
     <th> Yours badges </th>
   </tr>
   <tr>
-    <% @user_badges.each  do |user_badge| %>
+    <% current_user.badges.each  do |badge| %>
   </tr>
-      <% @badges.each do |badge| %>
-        <% if badge.id == user_badge.badge_id %>
-          <td> <%= badge.title %> </td>
-          <td> <%= badge.pic_name %> </td>
-        <% end %>
-      <% end %>
+      <td> <%= badge.title %> </td>
+      <td> <%= badge.pic_name %> </td>
     <% end %>
 </table>
