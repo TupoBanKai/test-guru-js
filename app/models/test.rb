@@ -13,6 +13,14 @@ class Test < ApplicationRecord
   scope :join_categories, -> (category_name) {
     joins(:category).where('categories.title  = ?', category_name)
    }
+  scope :category_collection, -> (category_id) {
+    joins(:category).where('categories.id = ?', category_id)
+  }
+
+  scope :join_test_passages, -> (category) {
+    joins(:test_passages).where('tests.category_id = ?', category)
+  }
+
 
   validates :title, :level, :category, presence: true
   validates :level, numericality: { greater_than: 0 }

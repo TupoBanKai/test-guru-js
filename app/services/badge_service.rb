@@ -12,36 +12,39 @@ class BadgeService
     user_tests = @current_user.test_passages.join_tests(test_level).count
     tests = Test.where(level: test_level).count
     if user_tests == tests
-      @badges.append(badge_by_rule('check_test_level'))
+      @badges.append(badge_by_rule('check_test_level', test_level))
     end
   end
 
   def check_point_in_first_attempt
     count_attempts = TestPassage.where(test_id: @test_passage.test_id, user_id: @current_user.id).count
     if count_attempts == 1
-      @badges.append(badge_by_rule('check_point_in_first_attempt'))
+      @badges.append(badge_by_rule('check_point_in_first_attempt', 'first_attempt'))
     end
   end
 
   def check_test_categories
-    test_categories = Category.find_by(id: Test.find_by(id: @test_passage.test_id).category_id)
-    @current_user.test_passages.join_tests(test_categories)
-    @badges.append(badge_by_rule('check_test_categories'))
+    test_categories = Test.category_collection(@test_passage.test.category_id)
+    user_categories = Test.join_test_passages(@test_passage.test.category_id).uniq
+    if test_categories == user_categories
+      @badges.append(badge_by_rule('check_test_categories', test_categories))
+    end
   end
 
   def badge_push
     collection = Badge.all
-    for i in collection
-      send("#{i.rule}")
+    collection.each do |badge|
+      send("#{badge.rule}")
     end
 
-    for i in @badges
-      @current_user.badges.push(i)
+    @badges.each do |badge|
+      @current_user.badges.push(badge)
     end
   end
 
-  def badge_by_rule(value)
-    Badge.find_by(rule: value)
+  def badge_by_rule(rule, value)
+    Badge.find_by(rule: rule, value: value)
   end
 
 end
+

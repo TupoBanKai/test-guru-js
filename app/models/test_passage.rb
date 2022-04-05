@@ -13,10 +13,6 @@ class TestPassage < ApplicationRecord
       joins(:test).where('tests.level = ?', level)
     }
 
-  scope :join_tests, -> (category) {
-      joins(:test).where('tests.category_id = ?', category)
-    }
-
   def completed?
     next_question.nil?
   end
