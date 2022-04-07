@@ -1,5 +1,5 @@
 class TestPassage < ApplicationRecord
-  CHECK_NUMBER = 50
+  CHECK_NUMBER = 85
 
   belongs_to :user
   belongs_to :test
