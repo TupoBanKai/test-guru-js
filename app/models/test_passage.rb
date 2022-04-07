@@ -9,7 +9,7 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_current_question, on: :create
 
-  scope :join_tests, -> (level) {
+  scope :tests_by_level, -> (level) {
       joins(:test).where('tests.level = ?', level)
     }
 

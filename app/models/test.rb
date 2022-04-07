@@ -13,12 +13,12 @@ class Test < ApplicationRecord
   scope :join_categories, -> (category_name) {
     joins(:category).where('categories.title  = ?', category_name)
    }
-  scope :category_collection, -> (category_id) {
-    joins(:category).where('categories.id = ?', category_id)
+  scope :category_collection, -> (category_title) {
+    joins(:category).where('categories.title = ?', category_title)
   }
 
-  scope :join_test_passages, -> (category) {
-    joins(:test_passages).where('tests.category_id = ?', category)
+  scope :join_test_passages, -> (category_id, user) {
+    joins(:test_passages).where('tests.category_id = ? and user_id = ?', category_id, user.id)
   }
 
 
