@@ -1,0 +1,23 @@
+<table class = "table">
+  <tr>
+    <th> All badges </th>
+  </tr>
+  <tr>
+    <% @badges.each  do |badge| %>
+  </tr>
+    <td> <%= badge.title %> </td>
+    <td> <%= badge.pic_name %> </td>
+    <% end %>
+</table>
+
+<table class = "table">
+  <tr>
+    <th> Yours badges </th>
+  </tr>
+  <tr>
+    <% current_user.badges.each  do |badge| %>
+  </tr>
+      <td> <%= badge.title %> </td>
+      <td> <%= badge.pic_name %> </td>
+    <% end %>
+</table>

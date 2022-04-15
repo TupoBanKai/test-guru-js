@@ -7,6 +7,6 @@ class Answer < ApplicationRecord
   validates :body, presence: true
 
   def max_answers
-    errors.add(:base, "exceeds the maximum value of questions") if question.answers.count >= 4
+    errors.add(:base, "exceeds the maximum value of answers") if question.answers.count >= 4
   end
 end

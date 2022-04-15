@@ -1,5 +1,5 @@
 class TestPassage < ApplicationRecord
-  CHECK_NUMBER = 50
+  CHECK_NUMBER = 85
 
   belongs_to :user
   belongs_to :test
@@ -8,6 +8,10 @@ class TestPassage < ApplicationRecord
   validates :current_question, presence: true
 
   before_validation :before_validation_set_current_question, on: :create
+
+  scope :tests_by_level, -> (level) {
+      joins(:test).where('tests.level = ?', level)
+    }
 
   def completed?
     next_question.nil?
