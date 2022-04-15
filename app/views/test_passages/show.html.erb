@@ -10,7 +10,6 @@
                 style: "width: 0%" do %>
                 <% end %>
 </div>
-
 <p>
   <b><%= @test_passage.current_question.body %></b>
 </p>
@@ -22,6 +21,7 @@
       <%= b.label %>
     </p>
   <% end %>
+  <p class="time"> <%= @test_passage.test.time %> </p>
 
   <p><%= link_to 'Gist Question', gist_test_passage_path(@test_passage), method: :post %></p>
   <p><%= form.submit 'Next' %></p>

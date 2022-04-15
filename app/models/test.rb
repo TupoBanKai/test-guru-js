@@ -22,7 +22,7 @@ class Test < ApplicationRecord
   }
 
 
-  validates :title, :level, :category, presence: true
+  validates :title, :level, :category, :time, presence: true
   validates :level, numericality: { greater_than: 0 }
   validates :title, uniqueness: { scope: :level }
 
