@@ -2,14 +2,17 @@ class TestPassagesController < ApplicationController
   before_action :find_test_passage, only: [:show, :update, :result, :gist]
 
   def show
-
+    @start_time = @test_passage.created_at
+    @spend_time = Time.now - @start_time
   end
 
   def result
   end
 
   def update
-    if @test_passage.completed?
+    @spend_time = Time.now.to_i - @start_time.to_i
+    i = @test_passage.test.time.to_i - @spend_time.to_i / 60
+    if @test_passage.completed? and i <= 0
       @test_passage.accept!(params[:answer_ids])
       # TestsMailer.completed_test(@test_passage).deliver_now
       badge_service = BadgeService.new(current_user, @test_passage)
@@ -17,7 +20,7 @@ class TestPassagesController < ApplicationController
       redirect_to result_test_passage_path(@test_passage)
     else
       @test_passage.accept!(params[:answer_ids])
-      render :show
+      redirect_to test_passage_path(@test_passage)
     end
   end
 
