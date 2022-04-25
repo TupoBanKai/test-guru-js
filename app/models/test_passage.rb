@@ -13,8 +13,8 @@ class TestPassage < ApplicationRecord
       joins(:test).where('tests.level = ?', level)
     }
 
-  def completed?
-    next_question.nil?
+  def completed?(time_left)
+    next_question.nil? || time_left <= 0
   end
 
   def accept!(answer_ids)
