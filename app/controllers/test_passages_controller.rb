@@ -2,21 +2,20 @@ class TestPassagesController < ApplicationController
   before_action :find_test_passage, only: [:show, :update, :result, :gist]
 
   def show
-    timing
+    @test_passage.timing
   end
 
   def result
   end
 
   def update
-    if @test_passage.completed?(timing)
-      continue_test
+    @test_passage.accept!(params[:answer_ids])
+    if @test_passage.completed? || @test_passage.expired?
       # TestsMailer.completed_test(@test_passage).deliver_now
       badge_service = BadgeService.new(current_user, @test_passage)
       badge_service.badge_push
       redirect_to result_test_passage_path(@test_passage)
     else
-      continue_test
       redirect_to test_passage_path(@test_passage)
     end
   end
@@ -38,12 +37,6 @@ class TestPassagesController < ApplicationController
 
   def continue_test
     @test_passage.accept!(params[:answer_ids])
-  end
-
-  def timing
-    @start_time = @test_passage.created_at
-    @spend_time = Time.now.to_i - @start_time.to_i
-    time_left = @test_passage.test.time.to_i - @spend_time.to_i / 60
   end
 
   def find_test_passage
