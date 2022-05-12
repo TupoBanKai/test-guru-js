@@ -15,7 +15,6 @@ class BadgeService
 
   def check_point_in_first_attempt(badge)
     count_attempts = TestPassage.where(test_id: @test_passage.test_id, user_id: @current_user.id).count
-
     count_attempts == 1 && @test_passages.success?
   end
 
