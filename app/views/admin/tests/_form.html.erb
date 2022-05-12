@@ -17,6 +17,11 @@
   </p>
 
   <p>
+    <%= form.label :time %><br>
+    <%= form.text_field :time, id: :test_time %>
+  </p>
+
+  <p>
      <b> publish </b> <br>
     <%= form.radio_button :status, 'true' %> true <br />
     <%= form.radio_button :status, 'false' %> false <br />
