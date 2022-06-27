@@ -1,5 +1,5 @@
 class DateDefine
-  def initialize(params)
+  def initialize
     @date_format = {
       "year" => "%Y",
       "month" => "%m",
@@ -9,7 +9,6 @@ class DateDefine
     }
     @date_for_user = ''
     @errors = []
-    date_format_check(params)
   end
 
   def errors
@@ -20,13 +19,21 @@ class DateDefine
     @date_for_user
   end
 
+  def success?
+    if errors[0] == nil
+      true
+    end
+    false
+  end
+
   def date_format_check(params)
     params.each do |var|
-      if @date_format.keys.include?(var)
+      if @date_format[var]
         @date_for_user += "#{@date_format[var]}"
       else
         @errors.append(var)
       end
     end
+
   end
 end
