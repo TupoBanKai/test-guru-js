@@ -3,18 +3,18 @@ class App
   CONTENT_TYPE = {"Content-Type" => "text/plain"}
 
   def call(env)
+    date = DateService.new()
     req = Rack::Request.new(env)
-    response("Not found", 404, CONTENT_TYPE) if !(link_check(req))
-
-    date.date_format_check(env["QUERY_STRING"].split("."))
-
-    response("Unknown time format #{date.errors} ", 400, CONTENT_TYPE) if date.success?
-
-    response("#{DateTime.now.strftime(date.date_for_user)}", 200, CONTENT_TYPE)
-  end
-
-  def date
-    @date ||= DateDefine.new()
+    if link_check(req)
+      if date.success?
+        date.date_format_check(env["QUERY_STRING"].split("."))
+        response("#{DateTime.now.strftime(date.date_for_user)}", 200, CONTENT_TYPE)
+      else
+        response("Unknown time format #{date.errors} ", 400, CONTENT_TYPE)
+      end
+    else
+      response("Not found", 404, CONTENT_TYPE)
+    end
   end
 
   def link_check(req)

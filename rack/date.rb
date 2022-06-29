@@ -1,12 +1,13 @@
-class DateDefine
-  def initialize
-    @date_format = {
+class DateService
+  DATE_FORMAT = {
       "year" => "%Y",
       "month" => "%m",
       "day" => "%d",
       "minute" => "%M",
       "second" => "%S"
     }
+
+  def initialize
     @date_for_user = ''
     @errors = []
   end
@@ -20,16 +21,13 @@ class DateDefine
   end
 
   def success?
-    if errors[0] == nil
-      true
-    end
-    false
+    errors.any?
   end
 
   def date_format_check(params)
     params.each do |var|
-      if @date_format[var]
-        @date_for_user += "#{@date_format[var]}"
+      if DATE_FORMAT[var]
+        @date_for_user += "#{DATE_FORMAT[var]}"
       else
         @errors.append(var)
       end
