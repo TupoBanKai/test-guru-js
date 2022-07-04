@@ -293,6 +293,7 @@ DEPENDENCIES
   octokit (~> 4.0)
   pg
   puma (~> 3.11)
+  rack
   rails (~> 5.2.3)
   rails-i18n
   sass-rails (~> 5.0)
